@@ -13,16 +13,24 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('mobile');
+            $table->integer('customer_id');
+            $table->integer('courier_id')->default(0);
+            $table->float('order_total');
+            $table->float('tax_total');
+            $table->float('shipping_total');
+            $table->text('order_date');
+            $table->text('order_timestamp');
+            $table->string('order_status')->default('Pending');
             $table->text('delivery_address');
-            $table->text('sub_total');
-            $table->text('tax_total');
-            $table->string('shipping_total');
-            $table->string('order_total');
-            $table->string('order_timestamp');
+            $table->string('delivery_status')->default('Pending');
+            $table->text('delivery_date')->nullable();
+            $table->text('delivery_timestamp')->nullable();
             $table->string('payment_method');
+            $table->string('payment_status')->default('Pending');
+            $table->text('payment_date')->nullable();
+            $table->text('payment_timestamp')->nullable();
+            $table->text('transaction_id')->nullable();
+            $table->string('currency')->default('BDT');
             $table->timestamps();
         });
     }
