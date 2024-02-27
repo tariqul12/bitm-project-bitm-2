@@ -24,10 +24,14 @@ Route::get('/cart/remove/{row_id}',[CartController::class,'remove'])->name('cart
 
 Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout');
 Route::post('/new/order',[CheckoutController::class,'newOrder'])->name('new.order');
+Route::get('/complete-order',[CheckoutController::class,'completeOrder'])->name('complete-order');
 
 
 
 Route::get('/customer/login',[CustomerAuthController::class,'login'])->name('customer.login');
+Route::post('/customer/login',[CustomerAuthController::class,'loginCheck'])->name('customer.login');
+Route::get('/customer/logout',[CustomerAuthController::class,'logout'])->name('customer.logout');
+Route::get('/customer/dashboard',[CustomerAuthController::class,'dashboard'])->name('customer.dashboard');
 Route::get('/customer/register',[CustomerAuthController::class,'register'])->name('customer.register');
 
 

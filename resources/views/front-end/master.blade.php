@@ -83,11 +83,24 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-12">
-                    <div class="top-end">
-                        <div class="user">
-                            <i class="lni lni-user"></i>
-                            Hello
+                    @if(Session::get('customer_id'))
+                        <div class="top-end">
+                            <div class="user">
+                                <i class="lni lni-user"></i>
+                                Hello {{Session::get('customer_name')}}
+                            </div>
+                            <ul class="user-login">
+                                <li>
+                                    <a href="">Dashbord</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('customer.logout')}}">Logout</a>
+                                </li>
+                            </ul>
                         </div>
+                </div>
+                @else
+                    <div class="top-end">
                         <ul class="user-login">
                             <li>
                                 <a href="{{route('customer.login')}}">Sign In</a>
@@ -97,6 +110,7 @@
                             </li>
                         </ul>
                     </div>
+                @endif
                 </div>
             </div>
         </div>
@@ -506,7 +520,7 @@
 </script>
 
 <script>
-    const finaleDate = new Date("February 15, 2024 00:00:00").getTime();
+    const finaleDate = new Date("February 15, 2027 00:00:00").getTime();
 
     const timer = () => {
         const now = new Date().getTime();

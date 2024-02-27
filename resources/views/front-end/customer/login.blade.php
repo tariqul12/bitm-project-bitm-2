@@ -27,11 +27,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
-                    <form class="card login-form" method="post">
+                    <form class="card login-form" method="post" action="{{route('customer.login')}}">
+                        @csrf
                         <div class="card-body">
                             <div class="title">
                                 <h3>Login Now</h3>
-                                <p>You can login using your social media account or email address.</p>
+                                <p>{{session('message')}}</p>
                             </div>
                             <div class="social-login">
                                 <div class="row">
@@ -47,12 +48,12 @@
                                 <span>Or</span>
                             </div>
                             <div class="form-group input-group">
-                                <label for="reg-fn">Email</label>
-                                <input class="form-control" type="email" id="reg-email" required>
+                                <label for="reg-fn">Email/mobile</label>
+                                <input class="form-control" name="user_name" type="text"  placeholder="Enter Your email or Mobile" required>
                             </div>
                             <div class="form-group input-group">
                                 <label for="reg-fn">Password</label>
-                                <input class="form-control" type="password" id="reg-pass" required>
+                                <input class="form-control" type="password" name="password" id="reg-pass" required>
                             </div>
                             <div class="d-flex flex-wrap justify-content-between bottom-content">
                                 <div class="form-check">
@@ -64,7 +65,7 @@
                             <div class="button">
                                 <button class="btn" type="submit">Login</button>
                             </div>
-                            <p class="outer-link">Don't have an account? <a href="register.html">Register here </a>
+                            <p class="outer-link">Don't have an account? <a href="{{route('customer.register')}}">Register here </a>
                             </p>
                         </div>
                     </form>
