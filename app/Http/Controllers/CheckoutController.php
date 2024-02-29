@@ -14,19 +14,48 @@ class CheckoutController extends Controller
     private  $order,$customer,$orderDetail;
     public function index()
     {
-        return view('front-end.checkout.index');
+        if (Session::get('customer_id'))
+        {
+            $this->customer = Customer::find(session::get('customer_id'));
+        }
+        else
+        {
+            $this->customer = '';
+        }
+        return view('front-end.checkout.index',[
+            'customer'=> $this->customer,
+        ]);
     }
     public function newOrder(Request $request)
     {
-        $this->customer = new  Customer();
-        $this->customer->name = $request->name;
-        $this->customer->email = $request->email;
-        $this->customer->mobile = $request->mobile;
-        $this->customer->password = bcrypt($request->mobile);
-        $this->customer->save();
+        if (Session::get('customer_id'))
+        {
+            $this->customer = Customer::find(Session::get('customer_id'));
+        }
+        else
+        {
+            $this->customer = Customer::where('email',$request->email)->orWhere('mobile',$request->mobile)->first();
+            if ($this->customer)
+            {
+                Session::put('customer_id',$this->customer->id);
+                Session::put('customer_name',$this->customer->name);
+            }
+            else
+            {
+                $this->customer = new  Customer();
+                $this->customer->name = $request->name;
+                $this->customer->email = $request->email;
+                $this->customer->mobile = $request->mobile;
+                $this->customer->address = $request->delivery_address;
+                $this->customer->password = bcrypt($request->mobile);
+                $this->customer->save();
 
-        Session::put('customer_id',$this->customer->id);
-        Session::put('customer_name',$this->customer->name);
+                Session::put('customer_id',$this->customer->id);
+                Session::put('customer_name',$this->customer->name);
+            }
+
+
+        }
 
 
         $this->order = new Order();

@@ -876,8 +876,7 @@
                                 <span class="side-menu__label">Order Module</span><i class="angle fa fa-angle-right"></i>
                             </a>
                             <ul class="slide-menu">
-                                <li class="side-menu-label1"><a href="javascript:void(0)">Apps</a></li>
-                                <li><a href="calendar2.html" class="slide-item">Manage Order</a></li>
+                                <li><a href="{{route('manage.order')}}" class="slide-item">Manage Order</a></li>
                             </ul>
                         </li>
 

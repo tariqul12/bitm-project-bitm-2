@@ -40,7 +40,11 @@
                                                     <label>Full Name</label>
                                                     <div class="row">
                                                         <div class="col-md-12 form-input form">
-                                                            <input type="text" name="name" placeholder="Full Name">
+                                                            @if(isset($customer->name))
+                                                            <input type="text" name="name" value="{{$customer->name}}" readonly placeholder="Full Name">
+                                                            @else
+                                                                <input type="text" name="name" required placeholder="Full Name">
+                                                            @endif
                                                         </div>
 
                                                     </div>
@@ -50,7 +54,11 @@
                                                 <div class="single-form form-default">
                                                     <label>Email Address</label>
                                                     <div class="form-input form">
-                                                        <input type="email" name="email" placeholder="Email Address">
+                                                        @if(isset($customer->email))
+                                                        <input type="email" name="email" value="{{$customer->email}}" readonly placeholder="Email Address">
+                                                        @else
+                                                            <input type="email" name="email" required placeholder="Email Address">
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -58,7 +66,11 @@
                                                 <div class="single-form form-default">
                                                     <label>Phone Number</label>
                                                     <div class="form-input form">
-                                                        <input type="number" name="mobile" placeholder="Phone Number">
+                                                        @if(isset($customer->mobile))
+                                                        <input type="number" name="mobile" value="{{$customer->mobile}}" readonly placeholder="Phone Number">
+                                                        @else
+                                                            <input type="number" name="mobile" required placeholder="Phone Number">
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -66,7 +78,11 @@
                                                 <div class="single-form form-default">
                                                     <label>Delivery Address</label>
                                                     <div class="form-input form">
-                                                        <textarea name="delivery_address" class="pt-2" placeholder="Delivery address"></textarea>
+                                                        @if(isset($customer->address))
+                                                            <textarea name="delivery_address" class="pt-2" placeholder="Delivery address">{{$customer->address}}</textarea>
+                                                        @else
+                                                            <textarea name="delivery_address" class="pt-2" placeholder="Delivery address"></textarea>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

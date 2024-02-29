@@ -11,6 +11,7 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 
 Route::get('/',[ShopgridController::class,'index'])->name('home');
@@ -75,5 +76,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/product/detail/{id}', [ProductController::class, 'detail'])->name('product.detail');
     Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+
+    Route::get('/manage/order', [OrderController::class, 'index'])->name('manage.order');
+    Route::get('/order/detail/{id}', [OrderController::class, 'detail'])->name('order.detail');
+
+
 
 });
