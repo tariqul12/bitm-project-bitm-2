@@ -42,13 +42,7 @@ class CheckoutController extends Controller
             }
             else
             {
-                $this->customer = new  Customer();
-                $this->customer->name = $request->name;
-                $this->customer->email = $request->email;
-                $this->customer->mobile = $request->mobile;
-                $this->customer->address = $request->delivery_address;
-                $this->customer->password = bcrypt($request->mobile);
-                $this->customer->save();
+                $this->customer = Customer::newCustomer($request);
 
                 Session::put('customer_id',$this->customer->id);
                 Session::put('customer_name',$this->customer->name);

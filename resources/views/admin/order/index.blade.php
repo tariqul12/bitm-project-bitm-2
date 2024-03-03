@@ -50,6 +50,9 @@
                                     <td>{{$order->delivery_status}}</td>
                                     <td>{{$order->payment_method}}</td>
                                     <td>
+                                        <a href="{{route('order.invoice', ['id' => $order->id])}}" class="btn btn-success btn-sm rounded-0">
+                                            <i class="fa fa-download"></i>
+                                        </a>
                                         <a href="{{route('order.detail', ['id' => $order->id])}}" class="btn btn-success btn-sm rounded-0">
                                             <i class="fa fa-bookmark-o"></i>
                                         </a>

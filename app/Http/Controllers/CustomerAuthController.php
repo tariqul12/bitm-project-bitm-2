@@ -50,5 +50,19 @@ class CustomerAuthController extends Controller
     {
         return view('front-end.customer.dashboard');
     }
+    public function newCustomer(Request $request)
+    {
+        if ($request->password == $request->confirm_password)
+        {
+            $this->customer = Customer::newCustomer($request);
+            Session::put('customer_id',$this->customer->id);
+            Session::put('customer_name',$this->customer->name);
+            return redirect('/customer/dashboard');
+        }
+        else
+        {
+            return back()->with('massage','Sorry Password & confurm password are not same!!');
+        }
+    }
 
 }

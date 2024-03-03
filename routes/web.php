@@ -34,6 +34,7 @@ Route::post('/customer/login',[CustomerAuthController::class,'loginCheck'])->nam
 Route::get('/customer/logout',[CustomerAuthController::class,'logout'])->name('customer.logout');
 Route::get('/customer/dashboard',[CustomerAuthController::class,'dashboard'])->name('customer.dashboard');
 Route::get('/customer/register',[CustomerAuthController::class,'register'])->name('customer.register');
+Route::post('/customer/register',[CustomerAuthController::class,'newCustomer'])->name('customer.register');
 
 
 
@@ -79,6 +80,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     Route::get('/manage/order', [OrderController::class, 'index'])->name('manage.order');
     Route::get('/order/detail/{id}', [OrderController::class, 'detail'])->name('order.detail');
+    Route::get('/order/invoice/{id}', [OrderController::class, 'invoice'])->name('order.invoice');
 
 
 
